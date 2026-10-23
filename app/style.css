@@ -1,0 +1,149 @@
+/* Written for the 2016 Tizen 2.4 browser: no CSS variables, no animations, no live blur. */
+html, body { margin: 0; width: 1920px; height: 1080px; overflow: hidden; background: #000; color: #fff; font-family: "Samsung Sans", Helvetica, Arial, sans-serif; }
+svg { fill: none; stroke: #fff; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+
+#home { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; }
+#wall { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; background: #000 no-repeat 0 0; }
+#shade { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px;
+  background: -webkit-linear-gradient(top, rgba(0,0,0,.28), rgba(0,0,0,0) 30%, rgba(0,0,0,0) 60%, rgba(0,0,0,.3));
+  background: linear-gradient(to bottom, rgba(0,0,0,.28), rgba(0,0,0,0) 30%, rgba(0,0,0,0) 60%, rgba(0,0,0,.3)); }
+
+#clock { position: absolute; left: 112px; top: 72px; font-size: 112px; font-weight: 300; letter-spacing: -2px; text-shadow: 0 2px 16px rgba(0,0,0,.35); }
+#date { position: absolute; left: 118px; top: 214px; font-size: 34px; text-shadow: 0 2px 10px rgba(0,0,0,.45); }
+
+/* Top-right Settings button */
+#utils { position: absolute; right: 100px; top: 92px; text-align: right; }
+.util { display: inline-block; margin-left: 12px; height: 64px; padding: 0 28px 0 22px; border-radius: 32px; font-size: 28px; line-height: 64px; text-shadow: 0 1px 8px rgba(0,0,0,.4); }
+.util svg { width: 32px; height: 32px; vertical-align: middle; margin: -4px 12px 0 0; }
+.util.focus { background: rgba(255,255,255,.95); color: #111; text-shadow: none; }
+.util.focus svg { stroke: #111; }
+
+/* Glass dock: a pre-blurred copy of the wallpaper, lined up behind the dock */
+#dock { position: absolute; height: 216px; top: 772px; border-radius: 44px; overflow: hidden; box-shadow: 0 10px 40px rgba(0,0,0,.25); }
+#glass { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; -webkit-background-size: 1920px 1080px; background-size: 1920px 1080px; }
+#dock:after { content: ""; position: absolute; left: 0; top: 0; right: 0; bottom: 0; border-radius: 44px; background: rgba(255,255,255,.10); border: 2px solid rgba(255,255,255,.28); -webkit-box-sizing: border-box; box-sizing: border-box; }
+#tiles { position: absolute; left: 20px; top: 20px; white-space: nowrap; z-index: 1; }
+.tile { display: inline-block; vertical-align: top; width: 196px; height: 176px; border-radius: 32px; text-align: center; position: relative; }
+.tile img, .tile svg { position: absolute; left: 66px; top: 32px; width: 64px; height: 64px; }
+.tile .name { position: absolute; left: 0; right: 0; top: 116px; font-size: 27px; }
+.tile.focus { background: rgba(255,255,255,.95); color: #111; }
+.tile.focus img { -webkit-filter: invert(1); filter: invert(1); }
+.tile.focus svg { stroke: #111; }
+.show-icons .tile .name { display: none; }
+.show-icons .tile img, .show-icons .tile svg { top: 48px; width: 80px; height: 80px; left: 58px; }
+.show-names .tile img, .show-names .tile svg { display: none; }
+.show-names .tile .name { top: 0; line-height: 176px; font-size: 34px; }
+
+/* List layout: large names in a column on the left, like CleanFrame's List */
+#list { position: absolute; left: 0; top: 0; width: 1100px; height: 1080px; overflow: hidden;
+  background: -webkit-linear-gradient(left, rgba(0,0,0,.30), rgba(0,0,0,.18) 55%, rgba(0,0,0,0));
+  background: linear-gradient(to right, rgba(0,0,0,.30), rgba(0,0,0,.18) 55%, rgba(0,0,0,0)); }
+#items { position: absolute; left: 96px; top: 120px; }
+.item { position: relative; height: 112px; line-height: 112px; padding: 0 40px 0 32px; margin-bottom: 4px; border-radius: 56px; font-size: 78px; letter-spacing: -1px; white-space: nowrap; opacity: .6; text-shadow: 0 2px 14px rgba(0,0,0,.35); display: inline-block; clear: both; float: left; }
+.item img, .item svg { width: 56px; height: 56px; vertical-align: middle; margin: -10px 28px 0 0; }
+.item.focus { opacity: 1; background: rgba(255,255,255,.16); font-weight: 600; }
+.show-icons .item .name { display: none; }
+.show-icons .item img, .show-icons .item svg { width: 72px; height: 72px; margin: -8px 0 0 0; }
+.show-names .item img, .show-names .item svg { display: none; }
+
+/* In the List layout the clock sits top right and Settings bottom right */
+.l-list #clock { left: auto; right: 112px; top: 72px; font-size: 72px; text-align: right; }
+.l-list #date { left: auto; right: 116px; top: 166px; font-size: 30px; text-align: right; }
+.l-list #utils { top: auto; bottom: 80px; }
+.l-list .util { display: block; float: right; clear: both; margin: 8px 0 0; }
+.l-list #dock { display: none; }
+.l-dock #list { display: none; }
+
+/* Settings panel */
+#settings { position: absolute; z-index: 5; left: 0; top: 0; width: 1920px; height: 1080px; background: rgba(0,0,0,.35); display: none; }
+#settings.open { display: block; }
+.panel { position: absolute; right: 0; top: 0; width: 980px; height: 1080px; overflow: hidden; background: rgba(18,18,22,.94); -webkit-box-sizing: border-box; box-sizing: border-box; padding: 126px 60px 52px; }
+.panel h1 { position: absolute; z-index: 2; left: 0; right: 0; top: 0; margin: 0; padding: 48px 60px 18px; font-size: 48px; font-weight: 400; background: rgba(18,18,22,.98); }
+#rows { position: relative; }
+.hint { position: absolute; left: 0; right: 0; bottom: 0; padding: 24px 60px 36px; background: rgba(18,18,22,.98); font-size: 24px; opacity: .55; }
+.row { margin-bottom: 4px; white-space: nowrap; }
+.row .label { font-size: 24px; opacity: .65; margin: 16px 0 8px; text-transform: uppercase; letter-spacing: 2px; }
+.opt { display: inline-block; vertical-align: top; margin: 0 10px 0 0; padding: 0 22px; height: 52px; line-height: 52px; border-radius: 26px; background: rgba(255,255,255,.08); font-size: 26px; border: 2px solid transparent; }
+.opt.on { border-color: rgba(255,255,255,.7); }
+.opt.focus { background: #fff; color: #111; }
+.opt.thumb { width: 96px; height: 54px; padding: 0; margin: 0 10px 4px 0; border-radius: 12px; -webkit-background-size: cover; background-size: cover; border-width: 3px; }
+.opt.thumb.on { border-color: #fff; }
+.opt.thumb.focus { border-color: #fff; -webkit-transform: scale(1.12); transform: scale(1.12); }
+.wallname { font-size: 24px; opacity: .8; margin-top: 6px; }
+
+#toast { position: absolute; z-index: 6; left: 510px; top: 48px; width: 900px; padding: 20px 28px; -webkit-box-sizing: border-box; box-sizing: border-box; border-radius: 16px; background: rgba(0,0,0,.82); font-size: 28px; text-align: center; display: none; }
+#toast.show { display: block; }
+
+/* Watching TV or HDMI: the picture is drawn behind the page, so the page goes transparent. */
+body.watching { background: transparent; }
+body.watching #home, body.watching #settings { display: none; }
+
+/* Apps found on the TV keep their own colours */
+.native.focus img { -webkit-filter: none; filter: none; }
+.tile.native img { border-radius: 14px; }
+.mono { position: absolute; left: 66px; top: 32px; width: 64px; height: 64px; line-height: 64px; border-radius: 16px; border: 2px solid #fff; -webkit-box-sizing: border-box; box-sizing: border-box; font-size: 34px; font-weight: 600; }
+.focus .mono { border-color: #111; }
+.item .mono { position: relative; left: 0; top: 0; display: inline-block; width: 56px; height: 56px; line-height: 52px; font-size: 30px; text-align: center; vertical-align: middle; margin: -10px 28px 0 0; letter-spacing: 0; }
+.show-icons .mono { display: inline-block; }
+.show-names .mono { display: none; }
+.show-icons .tile .mono { top: 48px; left: 58px; width: 80px; height: 80px; line-height: 76px; }
+
+/* Dim wallpaper */
+.dim-light #shade { background-color: rgba(0,0,0,.18); }
+.dim-strong #shade { background-color: rgba(0,0,0,.38); }
+
+/* Clock size */
+.clock-s #clock { font-size: 80px; }
+.clock-s #date { top: 176px; font-size: 28px; }
+.clock-l #clock { font-size: 168px; top: 52px; }
+.clock-l #date { top: 262px; font-size: 42px; }
+.l-list.clock-s #clock { font-size: 52px; }
+.l-list.clock-s #date { top: 140px; font-size: 26px; }
+.l-list.clock-l #clock { font-size: 108px; top: 56px; }
+.l-list.clock-l #date { top: 196px; font-size: 36px; }
+
+/* Drawn icons (Live TV, HDMI, devices) have thin outlines, so draw them a little larger
+   to match the solid YouTube/Netflix/Spotify logos. Apps found on the TV get full-size tiles. */
+.tile svg { left: 58px; top: 24px; width: 80px; height: 80px; stroke-width: 1.7; }
+.tile.native img { left: 56px; top: 22px; width: 84px; height: 84px; }
+.show-icons .tile svg { left: 50px; top: 40px; width: 96px; height: 96px; }
+.show-icons .tile.native img { left: 46px; top: 36px; width: 104px; height: 104px; }
+.item svg { width: 68px; height: 68px; margin: -12px 22px 0 -6px; stroke-width: 1.7; }
+.item.native img { width: 64px; height: 64px; border-radius: 12px; }
+.show-icons .item svg { width: 84px; height: 84px; margin: -10px 0 0 -6px; }
+
+/* Dark mode: no photo, a deep grey background */
+.bg-dark #wall { background-color: #111214; background-image: none;
+  background: -webkit-radial-gradient(30% 20%, circle, #26282d, #0d0e10 70%);
+  background: radial-gradient(circle at 30% 20%, #26282d, #0d0e10 70%); }
+.bg-dark #shade { background: none; }
+.bg-dark #dock { background: rgba(255,255,255,.06); box-shadow: none; }
+.bg-dark #list { background: none; }
+
+/* Settings: buttons that step through values, and hidden items */
+.opt.cycle { border-color: rgba(255,255,255,.25); }
+.opt.off { opacity: .45; text-decoration: line-through; }
+.opt.off.focus { opacity: 1; }
+.row .label .note { margin-left: 16px; text-transform: none; letter-spacing: 0; opacity: .8; }
+
+/* Screensaver: only the photo and a large clock */
+body.saver #dock, body.saver #list, body.saver .util { display: none; }
+body.saver #clock { font-size: 150px; left: 112px; right: auto; top: auto; bottom: 150px; text-align: left; }
+body.saver #date { font-size: 40px; left: 118px; right: auto; top: auto; bottom: 108px; text-align: left; }
+body.saver.spot-tr #clock, body.saver.spot-br #clock { left: auto; right: 112px; text-align: right; }
+body.saver.spot-tr #date, body.saver.spot-br #date { left: auto; right: 118px; text-align: right; }
+body.saver.spot-tl #clock, body.saver.spot-tr #clock { bottom: auto; top: 60px; }
+body.saver.spot-tl #date, body.saver.spot-tr #date { bottom: auto; top: 244px; }
+
+/* Wallpaper picker: the photo full screen, a strip of neighbours at the bottom */
+#picker { display: none; position: absolute; z-index: 4; left: 0; right: 0; bottom: 0; height: 430px; text-align: center;
+  background: -webkit-linear-gradient(top, rgba(0,0,0,0), rgba(0,0,0,.65));
+  background: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,.65)); }
+body.picking #picker { display: block; }
+body.picking #dock, body.picking #list, body.picking #utils, body.picking #clock, body.picking #date { display: none; }
+#pick-name { margin-top: 70px; font-size: 44px; text-shadow: 0 2px 12px rgba(0,0,0,.5); }
+#pick-name span { display: block; margin-top: 6px; font-size: 24px; opacity: .75; }
+#pick-strip { margin-top: 30px; white-space: nowrap; height: 140px; }
+.pthumb { display: inline-block; vertical-align: middle; width: 192px; height: 108px; margin: 0 10px; border-radius: 12px; -webkit-background-size: cover; background-size: cover; opacity: .6; border: 3px solid transparent; }
+.pthumb.focus { width: 224px; height: 126px; opacity: 1; border-color: #fff; }
+#pick-hint { margin-top: 14px; font-size: 24px; opacity: .7; }

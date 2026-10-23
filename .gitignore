@@ -1,0 +1,8 @@
+dist/
+*.wgt
+*.p12
+*.pem
+.manifest.tmp
+__pycache__/
+.DS_Store
+Thumbs.db
