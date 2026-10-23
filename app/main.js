@@ -232,8 +232,8 @@
   function renderHome() {
     var w = wallById(prefs.wall);
     var photo = prefs.bg === 'photo';
-    $('wall').style.backgroundImage = photo ? 'url(wallpapers/' + w.id + '.jpg)' : 'none';
-    $('glass').style.backgroundImage = photo ? 'url(wallpapers/' + w.id + '-blur.jpg)' : 'none';
+    $('wall').style.backgroundImage = photo ? 'url(wallpapers/' + w.id + '.jpg)' : '';
+    $('glass').style.backgroundImage = photo ? 'url(wallpapers/' + w.id + '-blur.jpg)' : '';
     $('home').className = 'l-' + prefs.layout + ' bg-' + prefs.bg + ' dim-' + (photo ? prefs.dim : 'off') + ' clock-' + prefs.clockSize;
 
     if (appFocus >= shown.length) appFocus = shown.length - 1;
@@ -347,7 +347,7 @@
     }
     $('rows').innerHTML = html;
     // Scroll the panel so the focused row stays in view.
-    var row = $('row' + sr), view = 860, top = row.offsetTop, bottom = top + row.offsetHeight;
+    var row = $('row' + sr), view = 780, top = row.offsetTop, bottom = top + row.offsetHeight;
     var scroll = Math.max(0, Math.min(top - 200, $('rows').offsetHeight - view));
     if (bottom - scroll > view) scroll = bottom - view;
     $('rows').style.top = -Math.max(0, scroll) + 'px';

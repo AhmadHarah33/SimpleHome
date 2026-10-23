@@ -4,6 +4,18 @@ A quiet, fast home screen for older Samsung Smart TVs. Your apps, your inputs, a
 
 Built for and tested on a **2016 Samsung UE55KU7350 (Tizen 2.4)**, whose browser engine is from 2014. Everything is plain HTML, CSS and ES5 JavaScript, with no live blur or animation, so it stays smooth on slow hardware. Inspired by [CleanFrame](https://github.com/nthnclrk/CleanFrame), which targets newer Samsung TVs.
 
+![SimpleHome with the glass dock](docs/images/dock.jpg)
+
+| List layout | Wallpaper picker |
+| --- | --- |
+| ![List layout](docs/images/list.jpg) | ![Wallpaper picker](docs/images/picker.jpg) |
+| **Settings** | **Dark background, icons only** |
+| ![Settings](docs/images/settings.jpg) | ![Dark background](docs/images/dark.jpg) |
+
+![Screensaver](docs/images/screensaver.jpg)
+
+*Screenshots are from the browser preview at the TV's 1920×1080 resolution; the TV looks the same.*
+
 ## Features
 
 - **Two layouts:** a glass **Dock** along the bottom, or a large **List** on the left. Each can show icons and names, icons only, or names only.
